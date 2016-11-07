@@ -15,6 +15,12 @@ namespace Unipam.TCC.BLL.ImplementationBLL
     {
         private readonly IUsuarioRepository UsuarioRepository;
 
+        //Inicialização Default
+        public UsuarioBLL()
+        {
+            this.UsuarioRepository = new UsuarioRepository();
+        }
+
         public UsuarioBLL(IUsuarioRepository usuarioRepository)
         {
             this.UsuarioRepository = usuarioRepository;

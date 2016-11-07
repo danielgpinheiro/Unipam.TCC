@@ -16,13 +16,13 @@ namespace Unipam.TCC.Windows
     public partial class EtapaForm : Form
     {
         private ITipoEntregaBLL tipoEntregaBLL;
-        private IUsuarioBLL UsuarioBLL;
+        private IEtapaBLL etapaBLL;
         private Etapa etapa;
 
         public EtapaForm()
         {
             this.tipoEntregaBLL = new TipoEntregaBLL();
-            this.UsuarioBLL = new UsuarioBLL();
+            this.etapaBLL = new EtapaBLL();
             InitializeComponent();
         }
 
