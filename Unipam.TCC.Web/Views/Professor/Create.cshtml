@@ -1,0 +1,35 @@
+﻿@model Unipam.TCC.DAL.Entity.Professor
+
+<h2>Cadastro de Professor</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(p => Model.Pessoa.Nome, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(p => Model.Pessoa.Nome, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => Model.Pessoa.Nome)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(p => Model.Pessoa.Usuario.NomeUsuario, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(p => Model.Pessoa.Usuario.NomeUsuario, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => Model.Pessoa.Usuario.NomeUsuario)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(p => Model.Pessoa.Usuario.Senha, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.PasswordFor(p => Model.Pessoa.Usuario.Senha, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => Model.Pessoa.Usuario.Senha)
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-default">Salvar</button>
+
+}

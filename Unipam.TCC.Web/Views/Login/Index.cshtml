@@ -1,0 +1,33 @@
+﻿@model Unipam.TCC.DAL.Entity.Usuario
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group" style="margin-bottom: 25px; overflow: hidden;">
+        @Html.LabelFor(p => Model.NomeUsuario, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(p => Model.NomeUsuario, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => Model.NomeUsuario)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(p => Model.Senha, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.PasswordFor(p => Model.Senha, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => Model.Senha)
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-default">Logar</button>
+
+}
+
+

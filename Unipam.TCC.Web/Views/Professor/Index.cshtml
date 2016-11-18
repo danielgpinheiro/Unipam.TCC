@@ -1,0 +1,32 @@
+﻿@model IList<Unipam.TCC.DAL.Entity.Professor>
+
+<h2>Professores</h2>
+
+@Html.ActionLink("Cadastro professor", "Create", "Professor")
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nome</th>
+            <th>Usuário</th>
+            <th>Excluir</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach(var professor in Model)
+        {
+            <tr>
+                <td>@professor.IdPessoa</td>
+                <td>@professor.Pessoa.Nome</td>
+                <td>@professor.Pessoa.Usuario.NomeUsuario</td>
+                <td></td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+

@@ -18,6 +18,8 @@ namespace Unipam.TCC.BLL.InterfacesBLL
 
         Usuario ObterPorId(int IdUsuario);
 
+        Usuario BuscarUsuario(Usuario usuario);
+
         void Dispose();
     }
 }

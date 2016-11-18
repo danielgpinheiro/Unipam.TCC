@@ -53,6 +53,11 @@ namespace Unipam.TCC.BLL.ImplementationBLL
             return UsuarioRepository.Obter(x => x.IdUsuario == IdUsuario);
         }
 
+        public Usuario BuscarUsuario(Usuario usuario)
+        {
+            return UsuarioRepository.Obter(x => x.NomeUsuario == usuario.NomeUsuario);
+        }
+
         public string Salvar(Usuario usuario)
         {
             try

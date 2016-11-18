@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Unipam.TCC.BLL.InterfacesBLL;
 using Unipam.TCC.DAL.Entity;
-using Unipam.TCC.DAL.ImplementationRepository;
+using Unipam.TCC.BLL.InterfacesBLL;
 using Unipam.TCC.DAL.InterfaceRepository;
+using Unipam.TCC.DAL.ImplementationRepository;
 
 namespace Unipam.TCC.BLL.ImplementationBLL
 {
