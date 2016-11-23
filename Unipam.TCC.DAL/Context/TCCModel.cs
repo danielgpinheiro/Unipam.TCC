@@ -145,7 +145,6 @@ namespace Unipam.TCC.DAL.Entity
 
             modelBuilder.Entity<Usuario>()
                 .Property(e => e.Senha)
-                .IsFixedLength()
                 .IsUnicode(false);
 
             modelBuilder.Entity<Usuario>()

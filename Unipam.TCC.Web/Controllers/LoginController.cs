@@ -37,6 +37,7 @@ namespace Unipam.TCC.Web.Controllers
             }
             else
             {
+                Session["NomeUsuario"] = usuario.NomeUsuario;
                 return RedirectToAction("Index", "Home");
             }
         }
