@@ -42,19 +42,29 @@
   <ItemGroup>
     <Compile Include="ImplementationBLL\AlunoBLL.cs" />
     <Compile Include="ImplementationBLL\CursoBLL.cs" />
+    <Compile Include="ImplementationBLL\EntregaBLL.cs" />
     <Compile Include="ImplementationBLL\EtapaBLL.cs" />
+    <Compile Include="ImplementationBLL\NotaBLL.cs" />
+    <Compile Include="ImplementationBLL\PapelBLL.cs" />
     <Compile Include="ImplementationBLL\PessoaBLL.cs" />
     <Compile Include="ImplementationBLL\ProfessorBLL.cs" />
     <Compile Include="ImplementationBLL\ProjetoBLL.cs" />
+    <Compile Include="ImplementationBLL\SituacaoBLL.cs" />
     <Compile Include="ImplementationBLL\TipoEntregaBLL.cs" />
+    <Compile Include="ImplementationBLL\TipoOrientacaoBLL.cs" />
     <Compile Include="ImplementationBLL\UsuarioBLL.cs" />
     <Compile Include="InterfacesBLL\IAlunoBLL.cs" />
     <Compile Include="InterfacesBLL\ICursoBLL.cs" />
+    <Compile Include="InterfacesBLL\IEntregaBLL.cs" />
     <Compile Include="InterfacesBLL\IEtapaBLL.cs" />
+    <Compile Include="InterfacesBLL\INotaBLL.cs" />
+    <Compile Include="InterfacesBLL\IPapelBLL.cs" />
     <Compile Include="InterfacesBLL\IPessoaBLL.cs" />
     <Compile Include="InterfacesBLL\IProfessorBLL.cs" />
     <Compile Include="InterfacesBLL\IProjetoBLL.cs" />
+    <Compile Include="InterfacesBLL\ISituacaoBLL.cs" />
     <Compile Include="InterfacesBLL\ITipoEntregaBLL.cs" />
+    <Compile Include="InterfacesBLL\ITipoOrientacaoBLL.cs" />
     <Compile Include="InterfacesBLL\IUsuarioBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

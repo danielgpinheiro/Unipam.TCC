@@ -21,11 +21,15 @@ namespace Unipam.TCC.Web
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/js/material.js",
+                      "~/Scripts/js/ripples.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/css/bootstrap-material-design.css",
+                      "~/Content/css/ripples.css"));
         }
     }
 }

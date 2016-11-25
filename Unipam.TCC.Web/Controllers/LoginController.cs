@@ -22,7 +22,14 @@ namespace Unipam.TCC.Web.Controllers
        [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            if (Session["NomeUsuario"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]

@@ -62,9 +62,9 @@ namespace Unipam.TCC.Windows
 
         public void CarregarTabela()
         {
-            this.UsuarioBLL = new UsuarioBLL();
+            this.EtapaBLL = new EtapaBLL();
 
-            tabela.DataSource = UsuarioBLL.Todas().Select(x => 
+            tabela.DataSource = EtapaBLL.Todas().Select(x => 
                     new { x.IdEtapa,
                         TipoEntrega = x.TipoEntrega.Descricao,
                         x.DataInicio,
@@ -72,13 +72,13 @@ namespace Unipam.TCC.Windows
                         x.NotaMinima
                     }).ToList();
 
-            this.UsuarioBLL.Dispose();
+            this.EtapaBLL.Dispose();
 
         }
 
         private void btn_salvar_Click(object sender, EventArgs e)
         {
-            this.UsuarioBLL = new UsuarioBLL();
+            this.EtapaBLL = new EtapaBLL();
 
 
             //Alterar e cadastrar
@@ -109,7 +109,7 @@ namespace Unipam.TCC.Windows
             }
 
 
-            var erro = UsuarioBLL.Salvar(etapa);
+            var erro = EtapaBLL.Salvar(etapa);
 
             if(erro != null)
             {
@@ -139,7 +139,7 @@ namespace Unipam.TCC.Windows
 
                 int idEtapa = (int) tabela.CurrentRow.Cells[0].Value;
 
-                this.UsuarioBLL = new UsuarioBLL();
+                this.UsuarioBLL = new EtapaBLL();
 
                 var erro = this.UsuarioBLL.Excluir(idEtapa);
 
@@ -161,11 +161,11 @@ namespace Unipam.TCC.Windows
 
         private void btn_editar_Click(object sender, EventArgs e)
         {
-            this.UsuarioBLL = new UsuarioBLL();
+            this.UsuarioBLL = new EtapaBLL();
 
             int idEtapa = (int) tabela.CurrentRow.Cells[0].Value;
 
-            Etapa etapa = UsuarioBLL.ObterPorId(idEtapa);
+            Etapa etapa = EtapaBLL.ObterPorId(idEtapa);
 
             dt_datafinal.Value = etapa.DataFim;
             dt_datainicio.Value = etapa.DataInicio;

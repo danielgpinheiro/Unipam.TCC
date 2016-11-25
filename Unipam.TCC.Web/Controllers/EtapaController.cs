@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Unipam.TCC.BLL.ImplementationBLL;
+using Unipam.TCC.BLL.InterfacesBLL;
 using Unipam.TCC.DAL.Entity;
 
 namespace Unipam.TCC.Web.Controllers
@@ -13,22 +15,22 @@ namespace Unipam.TCC.Web.Controllers
     public class EtapaController : Controller
     {
         private TCCModel db = new TCCModel();
+        private IEtapaBLL etapaBLL = new EtapaBLL();
 
         // GET: Etapa
         public ActionResult Index()
         {
-            var etapas = db.Etapas.Include(e => e.TipoEntrega);
-            return View(etapas.ToList());
+            return View(etapaBLL.Todas());
         }
 
         // GET: Etapa/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Etapa etapa = db.Etapas.Find(id);
+            Etapa etapa = etapaBLL.ObterPorId(id);
             if (etapa == null)
             {
                 return HttpNotFound();
@@ -52,8 +54,7 @@ namespace Unipam.TCC.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Etapas.Add(etapa);
-                db.SaveChanges();
+                etapaBLL.Salvar(etapa);
                 return RedirectToAction("Index");
             }
 
@@ -62,13 +63,13 @@ namespace Unipam.TCC.Web.Controllers
         }
 
         // GET: Etapa/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Etapa etapa = db.Etapas.Find(id);
+            Etapa etapa = etapaBLL.ObterPorId(id);
             if (etapa == null)
             {
                 return HttpNotFound();
@@ -86,8 +87,7 @@ namespace Unipam.TCC.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(etapa).State = EntityState.Modified;
-                db.SaveChanges();
+                etapaBLL.Salvar(etapa);
                 return RedirectToAction("Index");
             }
             ViewBag.IdTipoEntrega = new SelectList(db.TipoEntregas, "IdTipoEntrega", "Descricao", etapa.IdTipoEntrega);
@@ -95,17 +95,18 @@ namespace Unipam.TCC.Web.Controllers
         }
 
         // GET: Etapa/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Etapa etapa = db.Etapas.Find(id);
+            Etapa etapa = etapaBLL.ObterPorId(id);
             if (etapa == null)
             {
                 return HttpNotFound();
             }
+          
             return View(etapa);
         }
 
@@ -114,9 +115,8 @@ namespace Unipam.TCC.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Etapa etapa = db.Etapas.Find(id);
-            db.Etapas.Remove(etapa);
-            db.SaveChanges();
+            Etapa usuario = etapaBLL.ObterPorId(id);
+            etapaBLL.Excluir(id);
             return RedirectToAction("Index");
         }
 
@@ -124,7 +124,7 @@ namespace Unipam.TCC.Web.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                etapaBLL.Dispose();
             }
             base.Dispose(disposing);
         }
