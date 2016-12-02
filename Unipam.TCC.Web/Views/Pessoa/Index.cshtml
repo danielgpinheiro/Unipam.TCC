@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Unipam.TCC.DAL.Entity.Pessoa>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Aluno.IdPessoa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Professor.IdPessoa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.NomeUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Aluno.IdPessoa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Professor.IdPessoa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario.NomeUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdPessoa }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdPessoa }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdPessoa })
+        </td>
+    </tr>
+}
+
+</table>

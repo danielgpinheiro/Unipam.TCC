@@ -1,0 +1,42 @@
+﻿@model Unipam.TCC.DAL.Entity.Projeto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Projeto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Aluno.IdPessoa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aluno.IdPessoa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeProjeto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeProjeto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NotaProjeto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NotaProjeto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdProjeto }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

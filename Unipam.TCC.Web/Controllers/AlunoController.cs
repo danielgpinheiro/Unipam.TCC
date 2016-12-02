@@ -9,120 +9,118 @@ using System.Web.Mvc;
 using Unipam.TCC.DAL.Entity;
 using Unipam.TCC.BLL.ImplementationBLL;
 using Unipam.TCC.BLL.InterfacesBLL;
-using Unipam.TCC.BLL.InterfaceBLL;
 
 namespace Unipam.TCC.Web.Controllers
 {
-    public class EntregaController : Controller
+    public class AlunoController : Controller
     {
-        private TCCModel db = new TCCModel();
-        private IEntregaBLL entregaBLL = new EntregaBLL();
-        private IProjetoBLL projetoBLL = new ProjetoBLL();
-        private IEtapaBLL etapaBLL = new EtapaBLL();
+        private IAlunoBLL alunoBLL = new AlunoBLL();
+        private ICursoBLL cursoBLL = new CursoBLL();
+        private IPessoaBLL pessoaBLL = new PessoaBLL();
 
-        // GET: Entrega
+        // GET: Aluno
         public ActionResult Index()
         {
-            var entregas = entregaBLL.Todas();
-            return View(entregas.ToList());
+            var alunoes = alunoBLL.Todas();
+            return View(alunoes.ToList());
         }
 
-        // GET: Entrega/Details/5
+        // GET: Aluno/Details/5
         public ActionResult Details(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Entrega entrega = entregaBLL.ObterPorId(id);
-            if (entrega == null)
+            Aluno aluno = alunoBLL.ObterPorId(id);
+            if (aluno == null)
             {
                 return HttpNotFound();
             }
-            return View(entrega);
+            return View(aluno);
         }
 
-        // GET: Entrega/Create
+        // GET: Aluno/Create
         public ActionResult Create()
         {
-            ViewBag.IdEtapa = new SelectList(etapaBLL.Todas(), "IdEtapa", "IdEtapa");
-            ViewBag.IdProjeto = new SelectList(projetoBLL.Todos(), "IdProjeto", "NomeProjeto");
+            ViewBag.IdCurso = new SelectList(cursoBLL.Todas(), "IdCurso", "NomeCurso");
+            ViewBag.IdPessoa = new SelectList(pessoaBLL.Todas(), "IdPessoa", "Nome");
             return View();
         }
 
-        // POST: Entrega/Create
+        // POST: Aluno/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdEntrega,IdProjeto,IdEtapa,Data")] Entrega entrega)
+        public ActionResult Create([Bind(Include = "IdPessoa,IdCurso")] Aluno aluno)
         {
             if (ModelState.IsValid)
             {
-                entregaBLL.Salvar(entrega);
+                alunoBLL.Salvar(aluno);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdEtapa = new SelectList(db.Etapas, "IdEtapa", "IdEtapa", entrega.IdEtapa);
-            ViewBag.IdProjeto = new SelectList(db.Projetoes, "IdProjeto", "NomeProjeto", entrega.IdProjeto);
-            return View(entrega);
+            ViewBag.IdCurso = new SelectList(cursoBLL.Todas(), "IdCurso", "NomeCurso", aluno.IdCurso);
+            ViewBag.IdPessoa = new SelectList(pessoaBLL.Todas(), "IdPessoa", "Nome", aluno.IdPessoa);
+            return View(aluno);
         }
 
-        // GET: Entrega/Edit/5
+        // GET: Aluno/Edit/5
         public ActionResult Edit(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Entrega entrega = entregaBLL.ObterPorId(id);
-            if (entrega == null)
+            Aluno aluno = alunoBLL.ObterPorId(id);
+            if (aluno == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IdEtapa = new SelectList(etapaBLL.Todas(), "IdEtapa", "IdEtapa", entrega.IdEtapa);
-            ViewBag.IdProjeto = new SelectList(projetoBLL.Todos(), "IdProjeto", "NomeProjeto", entrega.IdProjeto);
-            return View(entrega);
+            ViewBag.IdCurso = new SelectList(cursoBLL.Todas(), "IdCurso", "NomeCurso", aluno.IdCurso);
+            ViewBag.IdPessoa = new SelectList(pessoaBLL.Todas(), "IdPessoa", "Nome", aluno.IdPessoa);
+            return View(aluno);
         }
 
-        // POST: Entrega/Edit/5
+        // POST: Aluno/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdEntrega,IdProjeto,IdEtapa,Data")] Entrega entrega)
+        public ActionResult Edit([Bind(Include = "IdPessoa,IdCurso")] Aluno aluno)
         {
             if (ModelState.IsValid)
             {
-                entregaBLL.Salvar(entrega);
+                alunoBLL.Salvar(aluno);
                 return RedirectToAction("Index");
             }
-            ViewBag.IdEtapa = new SelectList(etapaBLL.Todas(), "IdEtapa", "IdEtapa", entrega.IdEtapa);
-            ViewBag.IdProjeto = new SelectList(projetoBLL.Todos(), "IdProjeto", "NomeProjeto", entrega.IdProjeto);
-            return View(entrega);
+            ViewBag.IdCurso = new SelectList(cursoBLL.Todas(), "IdCurso", "NomeCurso", aluno.IdCurso);
+            ViewBag.IdPessoa = new SelectList(pessoaBLL.Todas(), "IdPessoa", "Nome", aluno.IdPessoa);
+            return View(aluno);
         }
 
-        // GET: Entrega/Delete/5
+        // GET: Aluno/Delete/5
         public ActionResult Delete(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Entrega entrega = entregaBLL.ObterPorId(id);
-            if (entrega == null)
+            Aluno aluno = alunoBLL.ObterPorId(id);
+            if (aluno == null)
             {
                 return HttpNotFound();
             }
-            return View(entrega);
+            return View(aluno);
         }
 
-        // POST: Entrega/Delete/5
+        // POST: Aluno/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            entregaBLL.Excluir(id);
+            alunoBLL.Excluir(id);
             return RedirectToAction("Index");
         }
 
@@ -130,7 +128,7 @@ namespace Unipam.TCC.Web.Controllers
         {
             if (disposing)
             {
-                entregaBLL.Dispose();
+                alunoBLL.Dispose();
             }
             base.Dispose(disposing);
         }

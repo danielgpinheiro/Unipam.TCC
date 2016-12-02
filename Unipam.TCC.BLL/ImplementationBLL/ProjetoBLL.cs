@@ -78,5 +78,11 @@ namespace Unipam.TCC.BLL.ImplementationBLL
         {
             return projetoRepository.Consultar(x => x.NomeProjeto.Contains(nome));
         }
+
+        public void Dispose()
+        {
+            //Coloque todos os repositórios aqui
+            projetoRepository.Dispose();
+        }
     }
 }

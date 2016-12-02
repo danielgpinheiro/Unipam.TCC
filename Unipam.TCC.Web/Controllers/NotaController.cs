@@ -56,7 +56,7 @@ namespace Unipam.TCC.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                notaBLL.(nota);
+                notaBLL.Salvar(nota);
                 return RedirectToAction("Index");
             }
 
@@ -97,13 +97,13 @@ namespace Unipam.TCC.Web.Controllers
         }
 
         // GET: Nota/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nota nota = db.Notas.Find(id);
+            Nota nota = notaBLL.ObterPorId(id);
             if (nota == null)
             {
                 return HttpNotFound();
@@ -116,9 +116,7 @@ namespace Unipam.TCC.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Nota nota = db.Notas.Find(id);
-            db.Notas.Remove(nota);
-            db.SaveChanges();
+            notaBLL.Excluir(id);
             return RedirectToAction("Index");
         }
 
@@ -126,7 +124,7 @@ namespace Unipam.TCC.Web.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                notaBLL.Dispose();
             }
             base.Dispose(disposing);
         }

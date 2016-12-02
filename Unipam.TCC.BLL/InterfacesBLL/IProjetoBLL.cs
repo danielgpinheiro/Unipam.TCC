@@ -19,5 +19,7 @@ namespace Unipam.TCC.BLL.InterfaceBLL
         IList<Projeto> Todos();
 
         IList<Projeto> Listar(string nome);
+
+        void Dispose();
     }
 }

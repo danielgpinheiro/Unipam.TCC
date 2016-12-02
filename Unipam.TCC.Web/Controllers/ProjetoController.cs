@@ -13,116 +13,110 @@ using Unipam.TCC.BLL.InterfaceBLL;
 
 namespace Unipam.TCC.Web.Controllers
 {
-    public class EntregaController : Controller
+    public class ProjetoController : Controller
     {
-        private TCCModel db = new TCCModel();
-        private IEntregaBLL entregaBLL = new EntregaBLL();
         private IProjetoBLL projetoBLL = new ProjetoBLL();
-        private IEtapaBLL etapaBLL = new EtapaBLL();
+        private IAlunoBLL alunoBLL = new AlunoBLL();
 
-        // GET: Entrega
+        // GET: Projeto
         public ActionResult Index()
         {
-            var entregas = entregaBLL.Todas();
-            return View(entregas.ToList());
+            var projetoes = projetoBLL.Todos();
+            return View(projetoes.ToList());
         }
 
-        // GET: Entrega/Details/5
+        // GET: Projeto/Details/5
         public ActionResult Details(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Entrega entrega = entregaBLL.ObterPorId(id);
-            if (entrega == null)
+            Projeto projeto = projetoBLL.Obter(id);
+            if (projeto == null)
             {
                 return HttpNotFound();
             }
-            return View(entrega);
+            return View(projeto);
         }
 
-        // GET: Entrega/Create
+        // GET: Projeto/Create
         public ActionResult Create()
         {
-            ViewBag.IdEtapa = new SelectList(etapaBLL.Todas(), "IdEtapa", "IdEtapa");
-            ViewBag.IdProjeto = new SelectList(projetoBLL.Todos(), "IdProjeto", "NomeProjeto");
+            ViewBag.IdPessoaAluno = new SelectList(alunoBLL.Todas(), "IdPessoa", "IdPessoa");
             return View();
         }
 
-        // POST: Entrega/Create
+        // POST: Projeto/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdEntrega,IdProjeto,IdEtapa,Data")] Entrega entrega)
+        public ActionResult Create([Bind(Include = "IdProjeto,NomeProjeto,NotaProjeto,IdPessoaAluno")] Projeto projeto)
         {
             if (ModelState.IsValid)
             {
-                entregaBLL.Salvar(entrega);
+                projetoBLL.Salvar(projeto);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdEtapa = new SelectList(db.Etapas, "IdEtapa", "IdEtapa", entrega.IdEtapa);
-            ViewBag.IdProjeto = new SelectList(db.Projetoes, "IdProjeto", "NomeProjeto", entrega.IdProjeto);
-            return View(entrega);
+            ViewBag.IdPessoaAluno = new SelectList(alunoBLL.Todas(), "IdPessoa", "IdPessoa", projeto.IdPessoaAluno);
+            return View(projeto);
         }
 
-        // GET: Entrega/Edit/5
+        // GET: Projeto/Edit/5
         public ActionResult Edit(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Entrega entrega = entregaBLL.ObterPorId(id);
-            if (entrega == null)
+            Projeto projeto = projetoBLL.Obter(id);
+            if (projeto == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IdEtapa = new SelectList(etapaBLL.Todas(), "IdEtapa", "IdEtapa", entrega.IdEtapa);
-            ViewBag.IdProjeto = new SelectList(projetoBLL.Todos(), "IdProjeto", "NomeProjeto", entrega.IdProjeto);
-            return View(entrega);
+            ViewBag.IdPessoaAluno = new SelectList(alunoBLL.Todas(), "IdPessoa", "IdPessoa", projeto.IdPessoaAluno);
+            return View(projeto);
         }
 
-        // POST: Entrega/Edit/5
+        // POST: Projeto/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdEntrega,IdProjeto,IdEtapa,Data")] Entrega entrega)
+        public ActionResult Edit([Bind(Include = "IdProjeto,NomeProjeto,NotaProjeto,IdPessoaAluno")] Projeto projeto)
         {
             if (ModelState.IsValid)
             {
-                entregaBLL.Salvar(entrega);
+                projetoBLL.Salvar(projeto);
                 return RedirectToAction("Index");
             }
-            ViewBag.IdEtapa = new SelectList(etapaBLL.Todas(), "IdEtapa", "IdEtapa", entrega.IdEtapa);
-            ViewBag.IdProjeto = new SelectList(projetoBLL.Todos(), "IdProjeto", "NomeProjeto", entrega.IdProjeto);
-            return View(entrega);
+            ViewBag.IdPessoaAluno = new SelectList(alunoBLL.Todas(), "IdPessoa", "IdPessoa", projeto.IdPessoaAluno);
+            return View(projeto);
         }
 
-        // GET: Entrega/Delete/5
+        // GET: Projeto/Delete/5
         public ActionResult Delete(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Entrega entrega = entregaBLL.ObterPorId(id);
-            if (entrega == null)
+            Projeto projeto = projetoBLL.Obter(id);
+            if (projeto == null)
             {
                 return HttpNotFound();
             }
-            return View(entrega);
+            return View(projeto);
         }
 
-        // POST: Entrega/Delete/5
+        // POST: Projeto/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            entregaBLL.Excluir(id);
+            projetoBLL.Excluir(id);
             return RedirectToAction("Index");
         }
 
@@ -130,7 +124,7 @@ namespace Unipam.TCC.Web.Controllers
         {
             if (disposing)
             {
-                entregaBLL.Dispose();
+                projetoBLL.Dispose();
             }
             base.Dispose(disposing);
         }

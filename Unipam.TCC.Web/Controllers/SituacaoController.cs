@@ -9,120 +9,107 @@ using System.Web.Mvc;
 using Unipam.TCC.DAL.Entity;
 using Unipam.TCC.BLL.ImplementationBLL;
 using Unipam.TCC.BLL.InterfacesBLL;
-using Unipam.TCC.BLL.InterfaceBLL;
 
 namespace Unipam.TCC.Web.Controllers
 {
-    public class EntregaController : Controller
+    public class SituacaoController : Controller
     {
-        private TCCModel db = new TCCModel();
-        private IEntregaBLL entregaBLL = new EntregaBLL();
-        private IProjetoBLL projetoBLL = new ProjetoBLL();
-        private IEtapaBLL etapaBLL = new EtapaBLL();
+        private ISituacaoBLL situacaoBLL = new SituacaoBLL();
 
-        // GET: Entrega
+        // GET: Situacao
         public ActionResult Index()
         {
-            var entregas = entregaBLL.Todas();
-            return View(entregas.ToList());
+            return View(situacaoBLL.Todas().ToList());
         }
 
-        // GET: Entrega/Details/5
+        // GET: Situacao/Details/5
         public ActionResult Details(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Entrega entrega = entregaBLL.ObterPorId(id);
-            if (entrega == null)
+            Situacao situacao = situacaoBLL.ObterPorId(id);
+            if (situacao == null)
             {
                 return HttpNotFound();
             }
-            return View(entrega);
+            return View(situacao);
         }
 
-        // GET: Entrega/Create
+        // GET: Situacao/Create
         public ActionResult Create()
         {
-            ViewBag.IdEtapa = new SelectList(etapaBLL.Todas(), "IdEtapa", "IdEtapa");
-            ViewBag.IdProjeto = new SelectList(projetoBLL.Todos(), "IdProjeto", "NomeProjeto");
             return View();
         }
 
-        // POST: Entrega/Create
+        // POST: Situacao/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdEntrega,IdProjeto,IdEtapa,Data")] Entrega entrega)
+        public ActionResult Create([Bind(Include = "IdSituacao,Descricao")] Situacao situacao)
         {
             if (ModelState.IsValid)
             {
-                entregaBLL.Salvar(entrega);
+                situacaoBLL.Salvar(situacao);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdEtapa = new SelectList(db.Etapas, "IdEtapa", "IdEtapa", entrega.IdEtapa);
-            ViewBag.IdProjeto = new SelectList(db.Projetoes, "IdProjeto", "NomeProjeto", entrega.IdProjeto);
-            return View(entrega);
+            return View(situacao);
         }
 
-        // GET: Entrega/Edit/5
+        // GET: Situacao/Edit/5
         public ActionResult Edit(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Entrega entrega = entregaBLL.ObterPorId(id);
-            if (entrega == null)
+            Situacao situacao = situacaoBLL.ObterPorId(id);
+            if (situacao == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IdEtapa = new SelectList(etapaBLL.Todas(), "IdEtapa", "IdEtapa", entrega.IdEtapa);
-            ViewBag.IdProjeto = new SelectList(projetoBLL.Todos(), "IdProjeto", "NomeProjeto", entrega.IdProjeto);
-            return View(entrega);
+            return View(situacao);
         }
 
-        // POST: Entrega/Edit/5
+        // POST: Situacao/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdEntrega,IdProjeto,IdEtapa,Data")] Entrega entrega)
+        public ActionResult Edit([Bind(Include = "IdSituacao,Descricao")] Situacao situacao)
         {
             if (ModelState.IsValid)
             {
-                entregaBLL.Salvar(entrega);
+                situacaoBLL.Salvar(situacao);
                 return RedirectToAction("Index");
             }
-            ViewBag.IdEtapa = new SelectList(etapaBLL.Todas(), "IdEtapa", "IdEtapa", entrega.IdEtapa);
-            ViewBag.IdProjeto = new SelectList(projetoBLL.Todos(), "IdProjeto", "NomeProjeto", entrega.IdProjeto);
-            return View(entrega);
+            return View(situacao);
         }
 
-        // GET: Entrega/Delete/5
+        // GET: Situacao/Delete/5
         public ActionResult Delete(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Entrega entrega = entregaBLL.ObterPorId(id);
-            if (entrega == null)
+            Situacao situacao = situacaoBLL.ObterPorId(id);
+            if (situacao == null)
             {
                 return HttpNotFound();
             }
-            return View(entrega);
+            return View(situacao);
         }
 
-        // POST: Entrega/Delete/5
+        // POST: Situacao/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            entregaBLL.Excluir(id);
+            situacaoBLL.Excluir(id);
             return RedirectToAction("Index");
         }
 
@@ -130,7 +117,7 @@ namespace Unipam.TCC.Web.Controllers
         {
             if (disposing)
             {
-                entregaBLL.Dispose();
+                situacaoBLL.Dispose();
             }
             base.Dispose(disposing);
         }
