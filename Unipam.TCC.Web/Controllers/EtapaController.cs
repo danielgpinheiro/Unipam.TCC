@@ -14,7 +14,7 @@ namespace Unipam.TCC.Web.Controllers
 {
     public class EtapaController : Controller
     {
-        private TCCModel db = new TCCModel();
+        private ITipoEntregaBLL tipoEntregaBLL = new TipoEntregaBLL();
         private IEtapaBLL etapaBLL = new EtapaBLL();
 
         // GET: Etapa
@@ -41,7 +41,7 @@ namespace Unipam.TCC.Web.Controllers
         // GET: Etapa/Create
         public ActionResult Create()
         {
-            ViewBag.IdTipoEntrega = new SelectList(db.TipoEntregas, "IdTipoEntrega", "Descricao");
+            ViewBag.IdTipoEntrega = new SelectList(tipoEntregaBLL.Todos(), "IdTipoEntrega", "Descricao");
             return View();
         }
 
@@ -58,7 +58,7 @@ namespace Unipam.TCC.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdTipoEntrega = new SelectList(db.TipoEntregas, "IdTipoEntrega", "Descricao", etapa.IdTipoEntrega);
+            ViewBag.IdTipoEntrega = new SelectList(tipoEntregaBLL.Todos(), "IdTipoEntrega", "Descricao", etapa.IdTipoEntrega);
             return View(etapa);
         }
 
@@ -74,7 +74,7 @@ namespace Unipam.TCC.Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IdTipoEntrega = new SelectList(db.TipoEntregas, "IdTipoEntrega", "Descricao", etapa.IdTipoEntrega);
+            ViewBag.IdTipoEntrega = new SelectList(tipoEntregaBLL.Todos(), "IdTipoEntrega", "Descricao", etapa.IdTipoEntrega);
             return View(etapa);
         }
 
@@ -90,7 +90,7 @@ namespace Unipam.TCC.Web.Controllers
                 etapaBLL.Salvar(etapa);
                 return RedirectToAction("Index");
             }
-            ViewBag.IdTipoEntrega = new SelectList(db.TipoEntregas, "IdTipoEntrega", "Descricao", etapa.IdTipoEntrega);
+            ViewBag.IdTipoEntrega = new SelectList(tipoEntregaBLL.Todos(), "IdTipoEntrega", "Descricao", etapa.IdTipoEntrega);
             return View(etapa);
         }
 
