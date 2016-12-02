@@ -74,6 +74,7 @@
     <Compile Include="ImplementationRepository\EntregaRepository.cs" />
     <Compile Include="ImplementationRepository\EtapaRepository.cs" />
     <Compile Include="ImplementationRepository\NotaRepository.cs" />
+    <Compile Include="ImplementationRepository\OrientacaoRepository.cs" />
     <Compile Include="ImplementationRepository\PapelRepository.cs" />
     <Compile Include="ImplementationRepository\PessoaRepository.cs" />
     <Compile Include="ImplementationRepository\ProfessorRepository.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="InterfaceRepository\IEntregaRepository.cs" />
     <Compile Include="InterfaceRepository\IEtapaRepository.cs" />
     <Compile Include="InterfaceRepository\INotaRepository.cs" />
+    <Compile Include="InterfaceRepository\IOrientacaoRepository.cs" />
     <Compile Include="InterfaceRepository\IPapelRepositorycs.cs" />
     <Compile Include="InterfaceRepository\IPessoaRepository.cs" />
     <Compile Include="InterfaceRepository\IProfessorRepository.cs" />

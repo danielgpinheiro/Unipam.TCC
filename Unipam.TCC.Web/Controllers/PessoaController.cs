@@ -44,8 +44,8 @@ namespace Unipam.TCC.Web.Controllers
         // GET: Pessoa/Create
         public ActionResult Create()
         {
-            ViewBag.IdPessoa = new SelectList(alunoBLL.Todas(), "IdPessoa", "IdPessoa");
-            ViewBag.IdPessoa = new SelectList(professorBLL.Todas(), "IdPessoa", "IdPessoa");
+            ViewBag.IdAluno = new SelectList(alunoBLL.Todas(), "IdPessoa", "IdPessoa");
+            ViewBag.IdPessoa = new SelectList(pessoaBLL.Todas(), "IdPessoa", "IdPessoa");
             ViewBag.IdUsuario = new SelectList(usuarioBLL.Todas(), "IdUsuario", "NomeUsuario");
             return View();
         }
@@ -63,8 +63,7 @@ namespace Unipam.TCC.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdPessoa = new SelectList(alunoBLL.Todas(), "IdPessoa", "IdPessoa", pessoa.IdPessoa);
-            ViewBag.IdPessoa = new SelectList(professorBLL.Todas(), "IdPessoa", "IdPessoa", pessoa.IdPessoa);
+            ViewBag.IdPessoa = new SelectList(pessoaBLL.Todas(), "IdPessoa", "IdPessoa", pessoa.IdPessoa);
             ViewBag.IdUsuario = new SelectList(usuarioBLL.Todas(), "IdUsuario", "NomeUsuario", pessoa.IdUsuario);
             return View(pessoa);
         }
@@ -81,8 +80,7 @@ namespace Unipam.TCC.Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IdPessoa = new SelectList(alunoBLL.Todas(), "IdPessoa", "IdPessoa", pessoa.IdPessoa);
-            ViewBag.IdPessoa = new SelectList(professorBLL.Todas(), "IdPessoa", "IdPessoa", pessoa.IdPessoa);
+            ViewBag.IdPessoa = new SelectList(pessoaBLL.Todas(), "IdPessoa", "IdPessoa", pessoa.IdPessoa);
             ViewBag.IdUsuario = new SelectList(usuarioBLL.Todas(), "IdUsuario", "NomeUsuario", pessoa.IdUsuario);
             return View(pessoa);
         }
@@ -99,8 +97,7 @@ namespace Unipam.TCC.Web.Controllers
                 pessoaBLL.Salvar(pessoa);
                 return RedirectToAction("Index");
             }
-            ViewBag.IdPessoa = new SelectList(alunoBLL.Todas(), "IdPessoa", "IdPessoa", pessoa.IdPessoa);
-            ViewBag.IdPessoa = new SelectList(professorBLL.Todas(), "IdPessoa", "IdPessoa", pessoa.IdPessoa);
+            ViewBag.IdPessoa = new SelectList(pessoaBLL.Todas(), "IdPessoa", "IdPessoa", pessoa.IdPessoa);
             ViewBag.IdUsuario = new SelectList(usuarioBLL.Todas(), "IdUsuario", "NomeUsuario", pessoa.IdUsuario);
             return View(pessoa);
         }

@@ -58,6 +58,7 @@
     <Compile Include="InterfacesBLL\IEntregaBLL.cs" />
     <Compile Include="InterfacesBLL\IEtapaBLL.cs" />
     <Compile Include="InterfacesBLL\INotaBLL.cs" />
+    <Compile Include="InterfacesBLL\IOrientacaoBLL.cs" />
     <Compile Include="InterfacesBLL\IPapelBLL.cs" />
     <Compile Include="InterfacesBLL\IPessoaBLL.cs" />
     <Compile Include="InterfacesBLL\IProfessorBLL.cs" />

@@ -12,113 +12,104 @@ using Unipam.TCC.BLL.InterfacesBLL;
 
 namespace Unipam.TCC.Web.Controllers
 {
-    public class NotaController : Controller
+    public class TipoOrientacaoController : Controller
     {
- 
-        private INotaBLL notaBLL = new NotaBLL();
-        private IEntregaBLL entregaBLL = new EntregaBLL();
+        private ITipoOrientacaoBLL tipoOriBLL = new TipoOrientacaoBLL();
 
-        // GET: Nota
+        // GET: TipoOrientacao
         public ActionResult Index()
         {
-            var notas = notaBLL.Todas();
-            return View(notas.ToList());
+            return View(tipoOriBLL.Todas().ToList());
         }
 
-        // GET: Nota/Details/5
-        public ActionResult Details(int id)
+        // GET: TipoOrientacao/Details/5
+        public ActionResult Details(short id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nota nota = notaBLL.ObterPorId(id);
-            if (nota == null)
+            TipoOrientacao tipoOrientacao = tipoOriBLL.ObterPorId(id);
+            if (tipoOrientacao == null)
             {
                 return HttpNotFound();
             }
-            return View(nota);
+            return View(tipoOrientacao);
         }
 
-        // GET: Nota/Create
+        // GET: TipoOrientacao/Create
         public ActionResult Create()
         {
-            ViewBag.IdEntrega = new SelectList(entregaBLL.Todas(), "IdEntrega", "IdEntrega");
-            ViewBag.IdUsuario = new SelectList(entregaBLL.Todas(), "IdUsuario", "Usuario.Nome");
             return View();
         }
 
-        // POST: Nota/Create
+        // POST: TipoOrientacao/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdNota,IdEntrega,DataAlteracao,Valor,IdUsuario")] Nota nota)
+        public ActionResult Create([Bind(Include = "IdTipoOrientacao,Descricao")] TipoOrientacao tipoOrientacao)
         {
             if (ModelState.IsValid)
             {
-                notaBLL.Salvar(nota);
+                tipoOriBLL.Salvar(tipoOrientacao);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdEntrega = new SelectList(entregaBLL.Todas(), "IdEntrega", "IdEntrega", nota.IdEntrega);
-            ViewBag.IdUsuario = new SelectList(entregaBLL.Todas(), "IdUsuario", "Usuario.Nome", nota.IdUsuario);
-            return View(nota);
+            return View(tipoOrientacao);
         }
 
-        // GET: Nota/Edit/5
-        public ActionResult Edit(int id)
+        // GET: TipoOrientacao/Edit/5
+        public ActionResult Edit(short id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nota nota = notaBLL.ObterPorId(id);
-            if (nota == null)
+            TipoOrientacao tipoOrientacao = tipoOriBLL.ObterPorId(id);
+            if (tipoOrientacao == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IdEntrega = new SelectList(entregaBLL.Todas(), "IdEntrega", "IdEntrega", nota.IdEntrega);
-            return View(nota);
+            return View(tipoOrientacao);
         }
 
-        // POST: Nota/Edit/5
+        // POST: TipoOrientacao/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdNota,IdEntrega,DataAlteracao,Valor,IdUsuario")] Nota nota)
+        public ActionResult Edit([Bind(Include = "IdTipoOrientacao,Descricao")] TipoOrientacao tipoOrientacao)
         {
             if (ModelState.IsValid)
             {
-                notaBLL.Salvar(nota);
+                tipoOriBLL.Salvar(tipoOrientacao);
                 return RedirectToAction("Index");
             }
-            ViewBag.IdEntrega = new SelectList(entregaBLL.Todas(), "IdEntrega", "IdEntrega", nota.IdEntrega);
-            return View(nota);
+            return View(tipoOrientacao);
         }
 
-        // GET: Nota/Delete/5
-        public ActionResult Delete(int id)
+        // GET: TipoOrientacao/Delete/5
+        public ActionResult Delete(short id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nota nota = notaBLL.ObterPorId(id);
-            if (nota == null)
+            TipoOrientacao tipoOrientacao = tipoOriBLL.ObterPorId(id);
+            if (tipoOrientacao == null)
             {
                 return HttpNotFound();
             }
-            return View(nota);
+            return View(tipoOrientacao);
         }
 
-        // POST: Nota/Delete/5
+        // POST: TipoOrientacao/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(short id)
         {
-            notaBLL.Excluir(id);
+            tipoOriBLL.Excluir(id);
             return RedirectToAction("Index");
         }
 
@@ -126,7 +117,7 @@ namespace Unipam.TCC.Web.Controllers
         {
             if (disposing)
             {
-                notaBLL.Dispose();
+                tipoOriBLL.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -169,6 +169,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlunoController.cs" />
+    <Compile Include="Controllers\AlunoesController.cs" />
     <Compile Include="Controllers\CursoController.cs" />
     <Compile Include="Controllers\EntregaController.cs" />
     <Compile Include="Controllers\EtapaController.cs" />
@@ -176,12 +177,15 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NotaController.cs" />
+    <Compile Include="Controllers\OrientacaoController.cs" />
     <Compile Include="Controllers\PapelController.cs" />
     <Compile Include="Controllers\PessoaController.cs" />
     <Compile Include="Controllers\ProfessorController.cs" />
     <Compile Include="Controllers\ProjetoController.cs" />
     <Compile Include="Controllers\SituacaoController.cs" />
+    <Compile Include="Controllers\SituacaoProjetoController.cs" />
     <Compile Include="Controllers\TipoEntregaController.cs" />
+    <Compile Include="Controllers\TipoOrientacaoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -262,8 +266,6 @@
     <Content Include="Views\Usuario\Details.cshtml" />
     <Content Include="Views\Usuario\Edit.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
-    <Content Include="Views\Professor\Create.cshtml" />
-    <Content Include="Views\Professor\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Entrega\Create.cshtml" />
     <Content Include="Views\Entrega\Delete.cshtml" />
@@ -305,9 +307,30 @@
     <Content Include="Views\Situacao\Details.cshtml" />
     <Content Include="Views\Situacao\Edit.cshtml" />
     <Content Include="Views\Situacao\Index.cshtml" />
+    <Content Include="Views\Professor\Create.cshtml" />
+    <Content Include="Views\Professor\Delete.cshtml" />
+    <Content Include="Views\Professor\Details.cshtml" />
+    <Content Include="Views\Professor\Edit.cshtml" />
+    <Content Include="Views\Professor\Index.cshtml" />
+    <Content Include="Views\Orientacao\Create.cshtml" />
+    <Content Include="Views\Orientacao\Delete.cshtml" />
+    <Content Include="Views\Orientacao\Details.cshtml" />
+    <Content Include="Views\Orientacao\Edit.cshtml" />
+    <Content Include="Views\Orientacao\Index.cshtml" />
+    <Content Include="Views\TipoOrientacao\Create.cshtml" />
+    <Content Include="Views\TipoOrientacao\Delete.cshtml" />
+    <Content Include="Views\TipoOrientacao\Details.cshtml" />
+    <Content Include="Views\TipoOrientacao\Edit.cshtml" />
+    <Content Include="Views\TipoOrientacao\Index.cshtml" />
+    <Content Include="Views\SituacaoProjeto\Create.cshtml" />
+    <Content Include="Views\SituacaoProjeto\Delete.cshtml" />
+    <Content Include="Views\SituacaoProjeto\Details.cshtml" />
+    <Content Include="Views\SituacaoProjeto\Edit.cshtml" />
+    <Content Include="Views\SituacaoProjeto\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Alunoes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

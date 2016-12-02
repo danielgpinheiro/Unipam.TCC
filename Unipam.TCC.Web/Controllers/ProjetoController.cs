@@ -43,7 +43,7 @@ namespace Unipam.TCC.Web.Controllers
         // GET: Projeto/Create
         public ActionResult Create()
         {
-            ViewBag.IdPessoaAluno = new SelectList(alunoBLL.Todas(), "IdPessoa", "IdPessoa");
+            ViewBag.IdPessoaAluno = new SelectList(alunoBLL.Todas(), "IdPessoa", "Pessoa.Nome");
             return View();
         }
 
@@ -60,7 +60,7 @@ namespace Unipam.TCC.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdPessoaAluno = new SelectList(alunoBLL.Todas(), "IdPessoa", "IdPessoa", projeto.IdPessoaAluno);
+            ViewBag.IdPessoaAluno = new SelectList(alunoBLL.Todas(), "IdPessoa", "Pessoa.Nome", projeto.IdPessoaAluno);
             return View(projeto);
         }
 

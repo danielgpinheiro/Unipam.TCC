@@ -23,18 +23,20 @@
                 @if(@Session["NomeUsuario"] != null) {
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Projeto", "Index", "Projeto")</li>
                     <li>@Html.ActionLink("Nota", "Index", "Nota")</li>
                     <li>@Html.ActionLink("Entrega", "Index", "Entrega")</li>
                     <li>@Html.ActionLink("Tipo de entrega","Index","TipoEntrega")</li>
                     <li>@Html.ActionLink("Tipo de Orientacao", "Index", "TipoOrientacao")</li>
+                    <li>@Html.ActionLink("Orientacao", "Index", "Orientacao")</li>
                     <li>@Html.ActionLink("Etapa","Index","Etapa")</li>
-                    <li>@Html.ActionLink("Situacao", "Index", "Situacao")</li>
                     <li>@Html.ActionLink("Usuario", "Index", "Usuario")</li>
                     <li>@Html.ActionLink("Pessoa", "Index", "Pessoa")</li>
                     <li>@Html.ActionLink("Professor", "Index", "Professor")</li>
                     <li>@Html.ActionLink("Aluno", "Index", "Aluno")</li>
                     <li>@Html.ActionLink("Curso", "Index", "Curso")</li>
                     <li>@Html.ActionLink("Situacao", "Index", "Situacao")</li>
+                    <li>@Html.ActionLink("Situacao Projeto", "Index", "SituacaoProjeto")</li>
                 </ul>
                 }
                 @Html.Partial("_LoginPartial")
